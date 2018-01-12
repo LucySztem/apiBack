@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemoryBookService {
+public class MemoryBookService implements BookService {
 	
 	private static long nextId = 1;
 	private List<Book> list;
@@ -25,14 +25,17 @@ public class MemoryBookService {
 				"programming"));
 	}
 
+	@Override
 	public List<Book> getList() {
 		return list;
 	}
 
+	@Override
 	public void setList(List<Book> list) {
 		this.list = list;
 	}
 
+	@Override
 	public Book getBookById(long id) throws NoSuchElementException {
 
 		Predicate<Book> bookById = c -> c.getId() == id;
@@ -40,6 +43,7 @@ public class MemoryBookService {
 		return book;
 	}
 
+	@Override
 	public void edit(Book book) throws NoSuchElementException {
 
 		Book b = getBookById(book.getId());
@@ -48,6 +52,7 @@ public class MemoryBookService {
 		b = book;
 	}
 
+	@Override
 	public void delete(Book book) throws NoSuchElementException {
 		//pierwotne cialo metody
 //		Book b = getBookById(book.getId());
@@ -56,12 +61,14 @@ public class MemoryBookService {
 		// nowe cialo metody, jak wywolamy delete to wykona sie delteById
 		deleteById(book.getId());
 	}
+	@Override
 	public void deleteById(long id) throws NoSuchElementException {
 		
 		Book b = getBookById(id);
 		this.list.remove(b);
 	}
 
+	@Override
 	public Book add(Book book) {
 		
 		book.setId(nextId++);
