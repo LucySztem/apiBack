@@ -9,16 +9,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MemoryBookService {
-
+	
+	private static long nextId = 1;
 	private List<Book> list;
 
 	// initilize new ArrayList in construcotr
 	public MemoryBookService() {
 		this.list = new ArrayList<>();
-		list.add(new Book(1L, "9788324631766", "Thinking	in	Java", "Bruce	Eckel", "Helion", "programming"));
-		list.add(new Book(2L, "9788324627738", "Rusz	glowa,	Java.", "Sierra	Kathy,	Bates	Bert", "Helion",
+		
+		//wywolamy metode add
+		add(new Book(0, "9788324631766", "Thinking	in	Java", "Bruce	Eckel", "Helion", "programming"));
+		add(new Book(0, "9788324627738", "Rusz	glowa,	Java.", "Sierra	Kathy,	Bates	Bert", "Helion",
 				"programming"));
-		list.add(new Book(3L, "9780130819338", "Java	2.	Podstawy", "Cay	Horstmann,	Gary	Cornell", "Helion",
+		add(new Book(0, "9780130819338", "Java	2.	Podstawy", "Cay	Horstmann,	Gary	Cornell", "Helion",
 				"programming"));
 	}
 
@@ -57,5 +60,12 @@ public class MemoryBookService {
 		
 		Book b = getBookById(id);
 		this.list.remove(b);
+	}
+
+	public Book add(Book book) {
+		
+		book.setId(nextId++);
+		this.list.add(book);
+		return book;
 	}
 }

@@ -1,10 +1,17 @@
 package pl.coderslab.apiback.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.coderslab.apiback.model.Book;
+import pl.coderslab.apiback.model.MemoryBookService;
 
 @RestController
 @RequestMapping("/books")
@@ -17,12 +24,25 @@ public class BookController {
 //		return new Book (1L,"9788324631766","Thinking	in	Java",
 //				"Bruce	Eckel","Helion","programming");
 //	}
-	
-	
+	@Autowired
+	MemoryBookService bookService;
 	
 	@GetMapping("")
 	public List<Book> getList() {
 		
+		return this.bookService.getList();
+	}
+	//to jest api zew wykorzystujace supee clase i pobieramy jedna ksiazke po jego ID
+	@GetMapping("/{id}")
+	public Book getById(@PathVariable long id) {
+		return this.bookService.getBookById(id);
 	}
 	
+	// dodawanie nowej ksazki do listy, patrz slajd 31
+	@PostMapping("")
+	public Book addBook(@RequestBody Book book) {
+		
+		// zwroci ksiazke jaka dodamy
+		return this.bookService.add(book);
+	}
 }
