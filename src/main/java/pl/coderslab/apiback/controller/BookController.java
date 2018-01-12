@@ -10,12 +10,19 @@ import pl.coderslab.apiback.model.Book;
 @RequestMapping("/books")
 public class BookController {
 	
-	@GetMapping("/test")
-	public Book test() {
-		//zwroci w przegladarce w formacie JSON
-		return new Book (1L,"9788324631766","Thinking	in	Java",
-				"Bruce	Eckel","Helion","programming");
-	}
+	//do testu czy controll dziala
+//	@GetMapping("/test")
+//	public Book test() {
+//		//zwroci w przegladarce w formacie JSON
+//		return new Book (1L,"9788324631766","Thinking	in	Java",
+//				"Bruce	Eckel","Helion","programming");
+//	}
 	
+	
+	
+	@GetMapping("")
+	public List<Book> getList() {
+		
+	}
 	
 }

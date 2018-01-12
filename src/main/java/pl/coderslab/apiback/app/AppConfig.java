@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"pl.coderslab.apiback.bean", "pl.coderslab.apiback.controller" })
+@ComponentScan(basePackages = {"pl.coderslab.apiback.model", "pl.coderslab.apiback.controller" })
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 }
