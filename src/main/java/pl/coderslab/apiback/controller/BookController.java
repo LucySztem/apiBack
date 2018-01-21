@@ -19,7 +19,7 @@ import pl.coderslab.apiback.model.BookService;
 @RequestMapping("/books")
 public class BookController {
 	
-	//do testu czy controll dziala
+	// testu czy controll dziala
 //	@GetMapping("/test")
 //	public Book test() {
 //		//zwroci w przegladarce w formacie JSON
@@ -27,6 +27,7 @@ public class BookController {
 //				"Bruce	Eckel","Helion","programming");
 //	}
 	@Autowired
+	// wstrzykniecie interfejsu BookService
 	BookService bookService;
 	
 	@GetMapping("")
@@ -34,7 +35,7 @@ public class BookController {
 		
 		return this.bookService.getList();
 	}
-	//to jest api zew wykorzystujace supee clase i pobieramy jedna ksiazke po jego ID
+
 	@GetMapping("/{id}")
 	public Book getById(@PathVariable long id) {
 		return this.bookService.getBookById(id);
@@ -44,10 +45,10 @@ public class BookController {
 	@PostMapping("")
 	public Book addBook(@RequestBody Book book) {
 		
-		// zwroci ksiazke jaka dodamy
+		
 		return this.bookService.add(book);
 	}
-	// usuwanie ksazki do listy, patrz slajd 31
+	// usuwanie ksiazki o wskazanym id, patrz slajd 31
 		@DeleteMapping("/{id}")
 		public String deleteBook(@PathVariable long id) {		
 			
@@ -57,9 +58,9 @@ public class BookController {
 		}
 		@PutMapping("/{id}")
 		public String putBook(@PathVariable long id, @RequestBody Book book) {		
-			//dostajemy ksiazki z bazy o takim id
+			//odniesienie sie do ksiazki z DB o takim id
 			 this.bookService.edit(book);
-			 // program postman on nam 
+			 
 			 return "{result: ok}";
 		}
 }
