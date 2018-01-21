@@ -17,7 +17,7 @@ public class MemoryBookService implements BookService {
 	public MemoryBookService() {
 		this.list = new ArrayList<>();
 		
-		//wywolamy metode add
+		//wywolanie metody add
 		add(new Book(0, "9788324631766", "Thinking	in	Java", "Bruce	Eckel", "Helion", "programming"));
 		add(new Book(0, "9788324627738", "Rusz	glowa,	Java.", "Sierra	Kathy,	Bates	Bert", "Helion",
 				"programming"));
@@ -58,7 +58,7 @@ public class MemoryBookService implements BookService {
 //		Book b = getBookById(book.getId());
 //		this.list.remove(b);
 		
-		// nowe cialo metody, jak wywolamy delete to wykona sie delteById
+		// nowe cialo metody,
 		deleteById(book.getId());
 	}
 	@Override
